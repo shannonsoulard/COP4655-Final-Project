@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_recents"
+        android:id="@+id/action_home"
         android:enabled="true"
         android:icon="@drawable/ic_home"
         android:title="Home"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_favorites"
+        android:id="@+id/action_search"
         android:enabled="true"
         android:icon="@drawable/ic_search"
         android:title="Search"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_favorite"
+        android:id="@+id/action_bookmarks"
         android:enabled="true"
         android:icon="@drawable/ic_bookmark"
         android:title="Bookmarks"

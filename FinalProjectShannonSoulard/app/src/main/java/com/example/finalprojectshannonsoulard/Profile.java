@@ -51,19 +51,19 @@ public class Profile extends AppCompatActivity implements GoogleApiClient.OnConn
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.action_recents:
+                    case R.id.action_home:
                         Toast.makeText(Profile.this, "Home", Toast.LENGTH_SHORT).show();
                         Intent MainIntent = new Intent(Profile.this, Profile.class);
                         startActivity(MainIntent);
                         break;
-                    case R.id.action_favorites://i didnt realize this was named favorites, but im too deep to fix it now
-                        Toast.makeText(Profile.this, "Business", Toast.LENGTH_SHORT).show();
+                    case R.id.action_search:
+                        Toast.makeText(Profile.this, "Search", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Profile.this, Search.class);
                         intent.putExtra(transferUserEmail, theUserEmail);
                         startActivity(intent);
                         break;
-                    case R.id.action_favorite:
-                        Toast.makeText(Profile.this, "favorites", Toast.LENGTH_SHORT).show();
+                    case R.id.action_bookmarks:
+                        Toast.makeText(Profile.this, "Bookmarks", Toast.LENGTH_SHORT).show();
                         Intent favoritesIntent = new Intent(Profile.this, Bookmarks.class);
                         favoritesIntent.putExtra(transferUserEmail, theUserEmail);
                         startActivity(favoritesIntent);
@@ -133,12 +133,6 @@ public class Profile extends AppCompatActivity implements GoogleApiClient.OnConn
             theUserEmail = account.getEmail();
             Log.v("hello", theUserEmail); //test
 
-
-           /* try{
-                Glide.with(this).load(account.getPhotoUrl()).into(profileImage);
-            }catch (NullPointerException e){
-                Toast.makeText(getApplicationContext(),"image not found",Toast.LENGTH_LONG).show();
-            } */
 
         }else{
             gotoMainActivity();

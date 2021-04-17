@@ -55,24 +55,18 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         setContentView(R.layout.activity_main);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.action_recents);
+        bottomNavigationView.setSelectedItemId(R.id.action_home);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.action_recents:
+                    case R.id.action_home:
                         Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
                         Intent MainIntent = new Intent(MainActivity.this, MainActivity.class);
                         startActivity(MainIntent);
                         break;
-                    case R.id.action_favorites://i didnt realize this was named favorites, but im too deep to fix it now
-                    case R.id.action_favorite:
-                        //Toast.makeText(MainActivity.this, "favorites", Toast.LENGTH_SHORT).show();
-                        //Intent favoritesIntent = new Intent(MainActivity.this, FavoriteActivity.class);
-                        //startActivity(favoritesIntent);
-                        //Toast.makeText(MainActivity.this, "Business", Toast.LENGTH_SHORT).show();
-                        //Intent intent = new Intent(MainActivity.this, BusinessActivity.class);
-                        //startActivity(intent);
+                    case R.id.action_search:
+                    case R.id.action_bookmarks:
                         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                         // Set Alert Title
                         builder.setTitle("Alert!");
@@ -93,11 +87,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                         //Show the Alert Dialog box
                         alertDialog.show();
                         break;
-                    // Set Alert Title
-                    // Set Cancelable false for when the user clicks on the outside the Dialog Box then it will remain show
-                    //Set the message show for the Alert time
-                    // Set the positive button with yes name OnClickListener method is use of DialogInterface interface.
-                    //Create the Alert dialog
+                    //Set the Alert Title
                     //Show the Alert Dialog box
                 }
                 return true;
@@ -105,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         });
 
         firebaseAuth = com.google.firebase.auth.FirebaseAuth.getInstance();
-        //this is where we start the Auth state Listener to listen for whether the user is signed in or not
+        //start the Auth state Listener to listen for whether the user is signed in or not
         authStateListener = new FirebaseAuth.AuthStateListener(){
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -115,8 +105,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 //if user is signed in, we call a helper method to save the user details to Firebase
                 if (user != null) {
                     // User is signed in
-                    // you could place other firebase code
-                    //logic to save the user details to Firebase
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                 } else {
                     // User is signed out
@@ -126,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         };
 
         GoogleSignInOptions gso =  new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.web_client_id))//you can also use R.string.default_web_client_id
+                .requestIdToken(getString(R.string.web_client_id))// R.string.default_web_client_id can be used as well
                 .requestEmail()
                 .build();
         googleApiClient=new GoogleApiClient.Builder(this)
