@@ -18,6 +18,12 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
@@ -31,7 +37,7 @@ import static android.content.ContentValues.TAG;
 
 public class Search extends AppCompatActivity {
 
-
+    public static Stock s;
     private String TAG = Search.class.getSimpleName();
     private ListView lv;
 
@@ -91,42 +97,86 @@ public class Search extends AppCompatActivity {
         if (userID == null) {
             userID = intent.getStringExtra(Bookmarks.transferUserID); //go add if user navigates from search tab
         }
-        nameZnumber.setText("user: " + userID);
+        //nameZnumber.setText("user: " + userID);
 
         //ListView
-        AssetList = new ArrayList<>();
-        lv = (ListView) findViewById(R.id.list);
+        //AssetList = new ArrayList<>();
+        //lv = (ListView) findViewById(R.id.list);
 
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                 //new GetResults().execute();
                 userTerm = userInput.getText().toString();
                 url = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + userTerm + "&apikey=72E0CVCZ7BK15ME1";
-                new AlphaVantage();
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            Stock s = new Stock(response);
+                            String symbol = s.getSymbol();
+                            //Log.e("SYMBOL", symbol);
+                            String open = s.getOpen();
+                            String high = s.getHigh();
+                            String low = s.getLow();
+                            String price = s.getPrice();
+                            String volume = s.getVolume();
+                            String latest_trading_day = s.getLatestTradingDay();
+                            String previous_close = s.getPrevClose();
+                            String change = s.getChange();
+                            String change_percent = s.getChangePercent();
 
-                // I dont know where else to take this ahh
+                            Intent intent = new Intent(getBaseContext(), SearchDetails.class);
+                            intent.putExtra("STOCK_SYMBOL", symbol);
+                            intent.putExtra("STOCK_OPEN", open);
+                            intent.putExtra("STOCK_HIGH", high);
+                            intent.putExtra("STOCK_LOW", low);
+                            intent.putExtra("STOCK_PRICE", price);
+                            intent.putExtra("STOCK_VOLUME", volume);
+                            intent.putExtra("STOCK_LTD", latest_trading_day);
+                            intent.putExtra("STOCK_PREV_CLOSE", previous_close);
+                            intent.putExtra("STOCK_CHANGE", change);
+                            intent.putExtra("STOCK_CHANGE_PERCENT", change_percent);
 
+                            startActivity(intent);
+
+
+                        }catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        Log.i("RESPONSE", response.toString());
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.i("ERROR", error.toString());
+                    }
+                });
+                requestQueue.add(jsonObjectRequest);
             }
+
+
+
         });
 
-    }
+}
 
-    public void openSearchDetails() {
+   /* public void openSearchDetails() {
         Intent intent = new Intent(this, SearchDetails.class);
         startActivity(intent);
-    }
+    }*/
 
 
-   /* public class GetResults extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            Toast.makeText(Search.this, "Fetching results", Toast.LENGTH_LONG).show();
+   /*public class GetResults extends AsyncTask<Void, Void, Void> {
+       @Override
+       protected void onPreExecute() {
+           super.onPreExecute();
+           Toast.makeText(Search.this, "Fetching results", Toast.LENGTH_LONG).show();
 
-        }
+       }
+   }
 
         @Override
         protected Void doInBackground(Void... voids) {

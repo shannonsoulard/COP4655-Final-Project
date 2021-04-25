@@ -39,7 +39,7 @@ public class SearchDetails extends AppCompatActivity {
    //Strings  values
     String keyword="";
    //TextView items on the display
-    TextView symbol, itemName, assetType, description, Currency, high52wk, low52wk, marketCap;
+    TextView tSymbol, tOpen, tHigh, tPrice, tLow, tChangePercent, tLTD, tChange, tPrevClose, tVolume;
    //Button on display
     Button btnBookmark;
 
@@ -48,23 +48,60 @@ public class SearchDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_details);
 
-
-
-        Intent intent = getIntent();
-        keyword = intent.getStringExtra(Search.transferID);
+        //Intent intent = getIntent();
+        //keyword = intent.getStringExtra(Search.transferID);
 
         //linking variables to the created items in the corresponding .xml file
-        symbol = (TextView) findViewById(R.id.symbol);
-        itemName = (TextView)findViewById(R.id.itemName);
-        assetType = (TextView) findViewById(R.id.AssetType);
-        description = (TextView) findViewById(R.id.description);
-        Currency = (TextView) findViewById(R.id.Currency);
-        high52wk = (TextView) findViewById(R.id.high52wk);
-        low52wk = (TextView) findViewById(R.id.low52wk);
-        marketCap = (TextView) findViewById(R.id.marketCap);
+        String dSymbol = getIntent().getStringExtra("STOCK_SYMBOL");
+        tSymbol = (TextView) findViewById(R.id.symbol);
+        tSymbol.setText(dSymbol);
+
+        String dOpen = getIntent().getStringExtra("STOCK_OPEN");
+        tOpen = (TextView) findViewById(R.id.open);
+        tOpen.setText("Open: " + dOpen);
+
+        String dHigh = getIntent().getStringExtra("STOCK_HIGH");
+        tHigh = (TextView) findViewById(R.id.high);
+        tHigh.setText("High: " + dHigh);
+
+        String dLow = getIntent().getStringExtra("STOCK_LOW");
+        tLow = (TextView) findViewById(R.id.low);
+        tLow.setText("Low: " + dLow);
+
+        String dPrice = getIntent().getStringExtra("STOCK_PRICE");
+        tPrice = (TextView) findViewById(R.id.price);
+        tPrice.setText("Price: " + dPrice);
+
+        String dVolume = getIntent().getStringExtra("STOCK_VOLUME");
+        tVolume = (TextView) findViewById(R.id.volume);
+        tVolume.setText("Volume: " + dVolume);
+
+        String dLTD = getIntent().getStringExtra("STOCK_LTD");
+        tLTD = (TextView) findViewById(R.id.latest_trading_day);
+        tLTD.setText("Latest Trading Day: " + dLTD);
+
+        String dPrevClose = getIntent().getStringExtra("STOCK_PREV_CLOSE");
+        tPrevClose = (TextView) findViewById(R.id.prevClose);
+        tPrevClose.setText("Previous Close: " + dPrevClose);
+
+        String dChange = getIntent().getStringExtra("STOCK_CHANGE");
+        tChange = (TextView) findViewById(R.id.change);
+        tChange.setText("Change: " + dChange);
+
+        String dChangePercent = getIntent().getStringExtra("STOCK_CHANGE_PERCENT");
+        tChangePercent = (TextView) findViewById(R.id.changePercent);
+        tChangePercent.setText("( " + dChangePercent + " )");
+
+       /* tItemName = (TextView)findViewById(R.id.itemName);
+        tAssetType = (TextView) findViewById(R.id.AssetType);
+        tDescription = (TextView) findViewById(R.id.description);
+        tCurrency = (TextView) findViewById(R.id.Currency);
+        tHigh52wk = (TextView) findViewById(R.id.high52wk);
+        tLow52wk = (TextView) findViewById(R.id.low52wk);
+        tMarketCap = (TextView) findViewById(R.id.marketCap);
         btnBookmark = (Button) findViewById(R.id.btnBookmark);
 
-        String userID = intent.getStringExtra(Search.transfertheID);
+        String userID = intent.getStringExtra(Search.transfertheID); */
 
 
 
