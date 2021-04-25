@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Bookmarks"
-    android:background="#F6F4E6">
+    android:background="#1A1E1E">
 
     <TextView
         android:id="@+id/favoriteTitle2"
@@ -15,7 +15,8 @@
         android:text="Shannon Soulard : Z23464832"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/favoriteTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/favoriteTitle"
+        android:textColor="#FAFAFA"/>
 
     <TextView
         android:id="@+id/favoriteTitle"
@@ -25,7 +26,8 @@
         android:text="user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#FAFAFA"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -49,6 +51,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/favoriteTitle2" />
+        app:layout_constraintTop_toBottomOf="@+id/favoriteTitle2"
+        android:textColor="#FAFAFA"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

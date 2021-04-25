@@ -3,24 +3,25 @@
     package="com.example.finalprojectshannonsoulard">
 
     <application
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="StockView"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalProjectShannonSoulard">
+        <activity android:name=".Home"></activity>
 
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".SearchDetails"
+        <activity
+            android:name=".SearchDetails"
             android:parentActivityName=".Search">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Search" />
-            </activity>
+        </activity>
         <activity android:name=".Bookmarks" />
         <activity android:name=".Search" />
         <activity android:name=".Profile" />

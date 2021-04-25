@@ -6,63 +6,41 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.ListView;
-import android.widget.TextView;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-public class Bookmarks extends AppCompatActivity {
-
-    private String TAG = Bookmarks.class.getSimpleName();
-    private ListView listv;
-    TextView BookmarkTitle;
-
-    ArrayList<HashMap<String, String>> contactList2;
-
-
-    String userID = "";
-    public static final String transferUserID = "com.example.finalprojectshannonsoulard.userID";
-
-
-
+public class Home extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bookmarks);
+        setContentView(R.layout.activity_home);
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.action_bookmarks);
+        bottomNavigationView.setSelectedItemId(R.id.action_home);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_profile:
-                        Intent MainIntent = new Intent(Bookmarks.this, Profile.class);
+                        Intent MainIntent = new Intent(Home.this, Profile.class);
                         startActivity(MainIntent);
                         break;
                     case R.id.action_home:
-                        Intent homeIntent = new Intent(Bookmarks.this, Home.class);
+                        Intent homeIntent = new Intent(Home.this, Home.class);
                         startActivity(homeIntent);
                         break;
                     case R.id.action_search:
-                        Intent intent = new Intent(Bookmarks.this, Search.class);
-                        intent.putExtra(transferUserID, userID);
+                        Intent intent = new Intent(Home.this, Search.class);
                         startActivity(intent);
                         break;
                     case R.id.action_bookmarks:
                         //Toast.makeText(FavoriteActivity.this, "favorites", Toast.LENGTH_SHORT).show();
-                        Intent favoritesIntent = new Intent(Bookmarks.this, Bookmarks.class);
+                        Intent favoritesIntent = new Intent(Home.this, Bookmarks.class);
                         startActivity(favoritesIntent);
                         break;
                 }
                 return true;
             }
         });
-
-
-
     }
-
 }

@@ -55,15 +55,36 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         setContentView(R.layout.activity_main);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.action_home);
+        bottomNavigationView.setSelectedItemId(R.id.action_profile);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.action_home:
-                        Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
+                    case R.id.action_profile:
+                        Toast.makeText(MainActivity.this, "Profile", Toast.LENGTH_SHORT).show();
                         Intent MainIntent = new Intent(MainActivity.this, MainActivity.class);
                         startActivity(MainIntent);
+                        break;
+
+                    case R.id.action_home:
+                        AlertDialog.Builder builderHome = new AlertDialog.Builder(MainActivity.this);
+                        //Set Alert Title
+                        builderHome.setTitle("Alert!");
+                        //Set Cancelable false for when the user clicks on the outside the Dialog Box then it will remain show
+                        builderHome.setCancelable(false);
+                        //Set the message show for the Alert time
+                        builderHome.setMessage("You must first login to be able to use this feature");
+                        builderHome.setPositiveButton("Close", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //When the user click yes button then app will close
+                                dialog.cancel();
+                            }
+                        });
+                        //Create the Alert dialog
+                        AlertDialog alertDialogHome = builderHome.create();
+                        //Show the Alert Dialog box
+                        alertDialogHome.show();
                         break;
                     case R.id.action_search:
                         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);

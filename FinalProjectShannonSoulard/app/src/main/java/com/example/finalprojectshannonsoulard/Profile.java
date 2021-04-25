@@ -51,10 +51,15 @@ public class Profile extends AppCompatActivity implements GoogleApiClient.OnConn
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.action_home:
-                        Toast.makeText(Profile.this, "Home", Toast.LENGTH_SHORT).show();
+                    case R.id.action_profile:
+                        Toast.makeText(Profile.this, "Profile", Toast.LENGTH_SHORT).show();
                         Intent MainIntent = new Intent(Profile.this, Profile.class);
                         startActivity(MainIntent);
+                        break;
+                    case R.id.action_home:
+                        Toast.makeText(Profile.this, "Home", Toast.LENGTH_SHORT).show();
+                        Intent homeIntent = new Intent(Profile.this, Home.class);
+                        startActivity(homeIntent);
                         break;
                     case R.id.action_search:
                         Toast.makeText(Profile.this, "Search", Toast.LENGTH_SHORT).show();

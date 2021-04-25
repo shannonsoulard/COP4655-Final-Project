@@ -68,9 +68,13 @@ public class Search extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.action_home:
+                    case R.id.action_profile:
                         Intent MainIntent = new Intent(Search.this, Profile.class);
                         startActivity(MainIntent);
+                        break;
+                    case R.id.action_home:
+                        Intent homeIntent = new Intent(Search.this, Home.class);
+                        startActivity(homeIntent);
                         break;
                     case R.id.action_search:
                         Intent intent = new Intent(Search.this, Search.class);
