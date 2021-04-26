@@ -70,7 +70,7 @@ public class Profile extends AppCompatActivity implements GoogleApiClient.OnConn
                     case R.id.action_bookmarks:
                         Toast.makeText(Profile.this, "Bookmarks", Toast.LENGTH_SHORT).show();
                         Intent favoritesIntent = new Intent(Profile.this, Bookmarks.class);
-                        favoritesIntent.putExtra(transferUserEmail, theUserEmail);
+                        favoritesIntent.putExtra("USER_ID", theUserEmail);
                         startActivity(favoritesIntent);
                         break;
                 }

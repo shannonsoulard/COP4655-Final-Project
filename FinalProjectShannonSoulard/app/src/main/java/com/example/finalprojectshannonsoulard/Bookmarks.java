@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -40,6 +41,10 @@ public class Bookmarks extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        userID = getIntent().getStringExtra("USER_ID");
+        Log.e("USER_ID", userID);
+
         setContentView(R.layout.activity_bookmarks);
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.action_bookmarks);
@@ -70,7 +75,7 @@ public class Bookmarks extends AppCompatActivity {
             }
         });
 
-       /* BookmarkedList = new ArrayList<>();
+        BookmarkedList = new ArrayList<>();
         listv = (ListView) findViewById(R.id.list2);
 
         Task<QuerySnapshot> query = FirebaseFirestore.getInstance().collection(userID).get()
@@ -101,6 +106,6 @@ public class Bookmarks extends AppCompatActivity {
 
                         }
                     }
-                });*/
+                });
     }
 }

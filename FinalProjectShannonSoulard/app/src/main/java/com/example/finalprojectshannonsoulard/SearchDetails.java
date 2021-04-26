@@ -48,7 +48,7 @@ public class SearchDetails extends AppCompatActivity {
     TextView tSymbol, tOpen, tHigh, tPrice, tLow, tChangePercent, tLTD, tChange, tPrevClose, tVolume;
    //Button on display
     Button btnBookmark;
-
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,11 +58,13 @@ public class SearchDetails extends AppCompatActivity {
         //Intent intent = getIntent();
         //keyword = intent.getStringExtra(Search.transferID);
         userEmail = getIntent().getStringExtra("USER_ID");
+        Log.e("USER_ID", userEmail);
 
         //linking variables to the created items in the corresponding .xml file
         String dSymbol = getIntent().getStringExtra("STOCK_SYMBOL");
         tSymbol = (TextView) findViewById(R.id.symbol);
         tSymbol.setText(dSymbol);
+        Bsymbol = dSymbol;
 
         String dOpen = getIntent().getStringExtra("STOCK_OPEN");
         tOpen = (TextView) findViewById(R.id.open);
@@ -79,6 +81,7 @@ public class SearchDetails extends AppCompatActivity {
         String dPrice = getIntent().getStringExtra("STOCK_PRICE");
         tPrice = (TextView) findViewById(R.id.price);
         tPrice.setText("Price: " + dPrice);
+        Bprice = dPrice;
 
         String dVolume = getIntent().getStringExtra("STOCK_VOLUME");
         tVolume = (TextView) findViewById(R.id.volume);
@@ -95,38 +98,47 @@ public class SearchDetails extends AppCompatActivity {
         String dChange = getIntent().getStringExtra("STOCK_CHANGE");
         tChange = (TextView) findViewById(R.id.change);
         tChange.setText("Change: " + dChange);
+        Bchange = dChange;
 
         String dChangePercent = getIntent().getStringExtra("STOCK_CHANGE_PERCENT");
         tChangePercent = (TextView) findViewById(R.id.changePercent);
         tChangePercent.setText("( " + dChangePercent + " )");
 
 
-       /* btnBookmark.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                docRef = FirebaseFirestore.getInstance().collection(userEmail).document(Bsymbol);
-                Map<String, Object> document = new HashMap<>();
-                document.put("symbol", Bsymbol);
-                document.put("price", Bprice);
-                document.put("change", Bchange);
-                //If saving to document is a success
-                docRef.set(document).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("RESULT", "Document has been saved");
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d("RESULT", "Document has not been saved");
-                    }
-                });
-                Toast.makeText(getApplicationContext(), "Stock Saved to Bookmarks", Toast.LENGTH_LONG).show();
-            }
-        });
 
-        */
+
+
 
 }
+
+        //btnBookmark.setOnClickListener(new View.OnClickListener() {
+        //@Override
+        public void onBookmark(View v) {
+            //docRef = FirebaseFirestore.getInstance().collection(userEmail).document(Bsymbol);
+            Map<String, Object> document = new HashMap<>();
+            document.put("symbol", Bsymbol);
+            document.put("price", Bprice);
+            document.put("change", Bchange);
+            //If saving to document is a success
+            db.collection(userEmail).document(Bsymbol)
+                    .set(document)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("SUCCESS_BK", "Document saved" );
+                            Toast.makeText(getApplicationContext(), "Stock Saved to Bookmarks", Toast.LENGTH_LONG).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("FAILURE_BK", "Error adding document", e);
+                        }
+                    });
+            //Toast.makeText(getApplicationContext(), "Stock Saved to Bookmarks", Toast.LENGTH_LONG).show();
+        }
+    //});
+
+
 }
 

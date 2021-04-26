@@ -29,6 +29,8 @@ import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
 
+    String userID = "";
+
     private ArrayList<News> news=new ArrayList<>();
     private RecyclerView mRecyclerView;
     @Override
@@ -57,6 +59,7 @@ public class Home extends AppCompatActivity {
                     case R.id.action_bookmarks:
                         //Toast.makeText(FavoriteActivity.this, "favorites", Toast.LENGTH_SHORT).show();
                         Intent favoritesIntent = new Intent(Home.this, Bookmarks.class);
+                        //bookmarkIntent.putExtra("USER_ID", userID);
                         startActivity(favoritesIntent);
                         break;
                 }

@@ -56,11 +56,14 @@ public class Search extends AppCompatActivity {
     TextView nameZnumber;
 
     String userID = "";
-    public static final String transfertheID = "com.example.finalprojectshannonsoulard.userID";
+    //public static final String transfertheID = "com.example.finalprojectshannonsoulard.userID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        userID = getIntent().getStringExtra("TRANSFER_USER_EMAIL");
+
         setContentView(R.layout.activity_search);
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.action_search);
@@ -82,7 +85,7 @@ public class Search extends AppCompatActivity {
                         break;
                     case R.id.action_bookmarks:
                         Intent bookmarkIntent = new Intent(Search.this, Bookmarks.class);
-                        bookmarkIntent.putExtra(transfertheID, userID);
+                        bookmarkIntent.putExtra("USER_ID", userID);
                         startActivity(bookmarkIntent);
                         break;
                 }
@@ -97,7 +100,7 @@ public class Search extends AppCompatActivity {
 
 
 
-        userID = getIntent().getStringExtra("TRANSFER_USER_EMAIL");
+
        /* if (userID == null) {
             userID = intent.getStringExtra(Bookmarks.transferUserID); //go add if user navigates from search tab
         }*/
