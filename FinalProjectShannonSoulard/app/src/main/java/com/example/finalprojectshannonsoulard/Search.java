@@ -96,11 +96,11 @@ public class Search extends AppCompatActivity {
         nameZnumber = (TextView) findViewById((R.id.nameZnumber));
 
 
-        Intent intent = getIntent();
-        userID = intent.getStringExtra(Profile.transferUserEmail); //go add if user navigates from search tab
-        if (userID == null) {
+
+        userID = getIntent().getStringExtra("TRANSFER_USER_EMAIL");
+       /* if (userID == null) {
             userID = intent.getStringExtra(Bookmarks.transferUserID); //go add if user navigates from search tab
-        }
+        }*/
         //nameZnumber.setText("user: " + userID);
 
         //ListView
@@ -143,6 +143,8 @@ public class Search extends AppCompatActivity {
                             intent.putExtra("STOCK_PREV_CLOSE", previous_close);
                             intent.putExtra("STOCK_CHANGE", change);
                             intent.putExtra("STOCK_CHANGE_PERCENT", change_percent);
+
+                            intent.putExtra("USER_ID", userID);
 
                             startActivity(intent);
 

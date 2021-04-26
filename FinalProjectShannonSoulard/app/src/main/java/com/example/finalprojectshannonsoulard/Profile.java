@@ -64,7 +64,7 @@ public class Profile extends AppCompatActivity implements GoogleApiClient.OnConn
                     case R.id.action_search:
                         Toast.makeText(Profile.this, "Search", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Profile.this, Search.class);
-                        intent.putExtra(transferUserEmail, theUserEmail);
+                        intent.putExtra("TRANSFER_USER_EMAIL", theUserEmail);
                         startActivity(intent);
                         break;
                     case R.id.action_bookmarks:

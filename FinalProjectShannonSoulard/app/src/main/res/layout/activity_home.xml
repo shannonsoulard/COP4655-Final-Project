@@ -52,13 +52,16 @@
         app:layout_constraintTop_toBottomOf="@+id/welcome" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/news_list"
         android:layout_width="414dp"
         android:layout_height="585dp"
         android:layout_marginTop="13dp"
         android:textColor="#FAFAFA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/learning" />
+        app:layout_constraintTop_toBottomOf="@+id/learning"
+        tools:listitem="@layout/item_layout"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

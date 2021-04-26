@@ -6,9 +6,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.DocumentReference;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +28,7 @@ public class Bookmarks extends AppCompatActivity {
     private ListView listv;
     TextView BookmarkTitle;
 
-    ArrayList<HashMap<String, String>> contactList2;
+    ArrayList<HashMap<String, String>> BookmarkedList;
 
 
     String userID = "";
@@ -61,8 +70,37 @@ public class Bookmarks extends AppCompatActivity {
             }
         });
 
+       /* BookmarkedList = new ArrayList<>();
+        listv = (ListView) findViewById(R.id.list2);
+
+        Task<QuerySnapshot> query = FirebaseFirestore.getInstance().collection(userID).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        int count = 0;
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                if (document.exists()) {
+                                    String bSymbol = document.getString("symbol");
+                                    String bPrice = document.getString("price");
+                                    String bChange = document.getString("change");
+
+                                    HashMap<String, String> theList = new HashMap<>();
+                                    theList.put("symbol", bSymbol);
+                                    theList.put("price", bPrice);
+                                    theList.put("change", bChange);
+                                    BookmarkedList.add(theList);
+                                }
+                                final ListAdapter adapter = new SimpleAdapter(Bookmarks.this, BookmarkedList,
+                                        R.layout.list_item, new String[]{"symbol", "price", "change"},
+                                        new int[]{R.id.symbol, R.id.price, R.id.change});
+                                listv.setAdapter(adapter);
 
 
+                            }
+
+                        }
+                    }
+                });*/
     }
-
 }

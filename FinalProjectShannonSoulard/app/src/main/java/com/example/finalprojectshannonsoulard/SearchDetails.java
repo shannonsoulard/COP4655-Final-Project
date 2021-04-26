@@ -38,10 +38,17 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class SearchDetails extends AppCompatActivity {
    //Strings  values
     String keyword="";
+    String Bsymbol = "";
+    String Bprice = "";
+    String Bchange = "";
+    String userEmail ="";
+
+    private DocumentReference docRef;
    //TextView items on the display
     TextView tSymbol, tOpen, tHigh, tPrice, tLow, tChangePercent, tLTD, tChange, tPrevClose, tVolume;
    //Button on display
     Button btnBookmark;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,7 @@ public class SearchDetails extends AppCompatActivity {
 
         //Intent intent = getIntent();
         //keyword = intent.getStringExtra(Search.transferID);
+        userEmail = getIntent().getStringExtra("USER_ID");
 
         //linking variables to the created items in the corresponding .xml file
         String dSymbol = getIntent().getStringExtra("STOCK_SYMBOL");
@@ -92,55 +100,32 @@ public class SearchDetails extends AppCompatActivity {
         tChangePercent = (TextView) findViewById(R.id.changePercent);
         tChangePercent.setText("( " + dChangePercent + " )");
 
-       /* tItemName = (TextView)findViewById(R.id.itemName);
-        tAssetType = (TextView) findViewById(R.id.AssetType);
-        tDescription = (TextView) findViewById(R.id.description);
-        tCurrency = (TextView) findViewById(R.id.Currency);
-        tHigh52wk = (TextView) findViewById(R.id.high52wk);
-        tLow52wk = (TextView) findViewById(R.id.low52wk);
-        tMarketCap = (TextView) findViewById(R.id.marketCap);
-        btnBookmark = (Button) findViewById(R.id.btnBookmark);
 
-        String userID = intent.getStringExtra(Search.transfertheID); */
-
-
-
-        // String for the Alpha Vantage URL
-        String AlphaURL = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=" + keyword + "&apikey=72E0CVCZ7BK15ME1";
-        //calling a function to get the data
-       /* getData(AlphaURL);
-
-    public void getData(AlphaURL){
-
-        JsonObjectRequest getData = new JsonObjectRequest(Request.Method.GET, AlphaURL, null, new Response.Listener<JSONObject>() {
+       /* btnBookmark.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    //API data into the listview
-                    String TheSymbol = String.valueOf("Symbol");
-                    String TheItemName = String.valueOf("Name");
-                    String TheAssetType = String.valueOf("AssetType");
-                    String TheCurrency = String.valueOf("Currency");
-                    String TheDescription = String.valueOf("Description");
-                    String The52wkhigh = String.valueOf("52WeekHigh");
-                    String The52wklow = String.valueOf("52WeekLow");
-                    String TheMarketCap = String.valueOf("MarketCapitalization");
-
-                } catch(JSONException theError){
-                    theError.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error){
-
+            public void onClick(View v) {
+                docRef = FirebaseFirestore.getInstance().collection(userEmail).document(Bsymbol);
+                Map<String, Object> document = new HashMap<>();
+                document.put("symbol", Bsymbol);
+                document.put("price", Bprice);
+                document.put("change", Bchange);
+                //If saving to document is a success
+                docRef.set(document).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("RESULT", "Document has been saved");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("RESULT", "Document has not been saved");
+                    }
+                });
+                Toast.makeText(getApplicationContext(), "Stock Saved to Bookmarks", Toast.LENGTH_LONG).show();
             }
         });
 
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(getData);
-
-    }*/
+        */
 
 }
 }
