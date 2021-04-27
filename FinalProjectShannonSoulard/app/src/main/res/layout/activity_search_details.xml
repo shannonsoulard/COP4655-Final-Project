@@ -43,9 +43,13 @@ tools:context=".SearchDetails"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
+        android:duplicateParentState="false"
+        android:editable="false"
         android:onClick="onBookmark"
         android:text="Bookmark"
         app:backgroundTint="#266867"
+        app:icon="@drawable/ic_bookmark_empty"
+        app:iconTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailsTitle" />
 

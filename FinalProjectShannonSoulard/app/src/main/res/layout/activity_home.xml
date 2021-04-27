@@ -59,10 +59,18 @@
         android:layout_marginTop="13dp"
         android:textColor="#FAFAFA"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/learning"
-        tools:listitem="@layout/item_layout"/>
+        tools:listitem="@layout/item_layout" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="278dp"
+        android:layout_height="613dp"
+        app:srcCompat="@drawable/NewsScreenShot"
+        tools:layout_editor_absoluteX="157dp"
+        tools:layout_editor_absoluteY="277dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

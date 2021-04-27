@@ -47,7 +47,7 @@ public class Home extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_profile:
                         Intent MainIntent = new Intent(Home.this, Profile.class);
-                        //MainIntent.putExtra("TRANSFER_USER_EMAIL", theUserEmail);
+                        MainIntent.putExtra("TRANSFER_USER_EMAIL", theUserEmail);
                         startActivity(MainIntent);
                         break;
                     case R.id.action_home:
@@ -94,7 +94,7 @@ public class Home extends AppCompatActivity {
                     String theSource = n.getSource();
                     String theDateTime = n.getDateTime();
 
-                    //theImage = (mRecyclerView).setText(R.id.image);
+                    //theHeadline = (mRecyclerView).setText(R.id.headline);
 
                     //displayNews();
 

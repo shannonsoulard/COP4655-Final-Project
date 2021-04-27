@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -31,9 +33,9 @@ public class Bookmarks extends AppCompatActivity {
 
     ArrayList<HashMap<String, String>> BookmarkedList;
 
-
+    ListAdapter adapter;
     String theUserEmail = "";
-    public static final String transferUserID = "com.example.finalprojectshannonsoulard.userID";
+    //public static final String transferUserID = "com.example.finalprojectshannonsoulard.userID";
 
 
 
@@ -42,8 +44,16 @@ public class Bookmarks extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
+
         theUserEmail = getIntent().getStringExtra("TRANSFER_USER_EMAIL");
         Log.e("TRANSFER_USER_EMAIL", theUserEmail);
+
+
+        /*if (theUserEmail != "") {
+            loadBookmarks();
+        }*/
 
         setContentView(R.layout.activity_bookmarks);
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -54,7 +64,7 @@ public class Bookmarks extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_profile:
                         Intent MainIntent = new Intent(Bookmarks.this, Profile.class);
-                        //MainIntent.putExtra("TRANSFER_USER_EMAIL", theUserEmail);
+                        MainIntent.putExtra("TRANSFER_USER_EMAIL", theUserEmail);
                         startActivity(MainIntent);
                         break;
                     case R.id.action_home:
@@ -111,4 +121,67 @@ public class Bookmarks extends AppCompatActivity {
                     }
                 });
     }
+
+    /*public void loadBookmarks() {
+        Log.i("LOAD","loading favorites");
+        final ArrayList<HashMap<String, String>> dataF = new ArrayList<>();
+        final ListView lvF = (ListView) findViewById(R.id.list2);
+        Task<QuerySnapshot> query = FirebaseFirestore.getInstance().collection(theUserEmail).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {//need
+                                if (document.exists()) {
+                                    HashMap<String, String> infoF = new HashMap<>();
+
+                                    // adding each child node to HashMap key => value
+                                    infoF.put("symbolB", document.getString("symbol"));
+                                    infoF.put("priceB", document.getString("price"));
+                                    infoF.put("changeB", document.getString("change"));
+                                    infoF.put("change_percentB", document.getString("change_percent"));
+                                    infoF.put("latest_trading_dayB", document.getString("latest_trading_day"));
+                                    infoF.put("openB", document.getString("open"));
+                                    infoF.put("previous_closeB", document.getString("previous_close"));
+                                    infoF.put("highB", document.getString("high"));
+                                    infoF.put("lowB", document.getString("low"));
+                                    infoF.put("volumeB", document.getString("volume"));
+
+                                    // adding contact to contact list
+                                    dataF.add(infoF);
+                                } else {
+                                    Log.i("ERROR", "Error getting documents: ", task.getException());
+                                }
+                                adapter = new SimpleAdapter(Bookmarks.this, dataF,
+                                        R.layout.list_item, new String[]{ "symbol","price", "change"},
+                                        new int[]{R.id.symbol, R.id.price, R.id.change});
+                                lvF.setAdapter(adapter);
+                                lvF.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                                        HashMap<String, String> businessF = dataF.get(position);
+                                        favResults.setName(businessF.get("nameF"));
+                                        favResults.setTitle(businessF.get("titleF"));
+                                        favResults.setAddress(businessF.get("addressF"));
+                                        favResults.setPhoneNum(businessF.get("phoneNumF"));
+                                        favResults.setRating(Double.parseDouble(businessF.get("ratingF")));
+                                        favResults.setHours(businessF.get("hoursF"));
+                                        favResults.setCityLat(businessF.get("latF"));
+                                        favResults.setCityLon(businessF.get("lonF"));
+                                        theUserEmail.setShowingFavs(true);
+                                        SearchDetails.transferData();
+                                        Intent intent = new Intent(FavsActivity.this, InfoActivity.class);
+                                        startActivity(intent);
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
+    }*/
+
+
+
+
+
 }

@@ -36,10 +36,15 @@ public class News {
             headline = jsonobject.getString("headline");
             Log.e("LOOP_HEADLINES", headline);
             summary = jsonobject.getString("summary");
+            Log.i("LOOP_SUMMARY", summary);
             url = jsonobject.getString("url");
+            Log.e("LOOP_URL", url);
             source = jsonobject.getString("source");
+            Log.i("LOOP_SOURCE", source);
             category = jsonobject.getString("category");
+            Log.e("LOOP_CATEGORY", category);
             datetime = jsonobject.getString("datetime");
+            Log.i("LOOP_DATETIME", datetime);
 
 
         }

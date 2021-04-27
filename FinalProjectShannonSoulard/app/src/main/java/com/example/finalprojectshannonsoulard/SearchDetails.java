@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,7 +42,7 @@ public class SearchDetails extends AppCompatActivity {
     String Bsymbol = "";
     String Bprice = "";
     String Bchange = "";
-    String userEmail ="";
+    String theUserEmail ="";
 
     private DocumentReference docRef;
    //TextView items on the display
@@ -55,10 +56,20 @@ public class SearchDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_details);
 
+       /* if(theUserEmail.getShowingFavs()){
+            Button btnBookmark = findViewById(R.id.btnBookmark);
+            btnBookmark = findViewById(R.id.btnBookmark);
+            btnBookmark.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_bookmark_filled, 0,0,0);
+            btnBookmark.setTextColor(Color.WHITE);
+            results = Bookmarks.getDataInstance();
+        }*/
+
+
+
         //Intent intent = getIntent();
         //keyword = intent.getStringExtra(Search.transferID);
-        userEmail = getIntent().getStringExtra("TRANSFER_USER_EMAIL");
-        Log.e("TRANSFER_USER_EMAIL", userEmail);
+        theUserEmail = getIntent().getStringExtra("TRANSFER_USER_EMAIL");
+        Log.e("TRANSFER_USER_EMAIL", theUserEmail);
 
         //linking variables to the created items in the corresponding .xml file
         String dSymbol = getIntent().getStringExtra("STOCK_SYMBOL");
@@ -120,13 +131,16 @@ public class SearchDetails extends AppCompatActivity {
             document.put("price", Bprice);
             document.put("change", Bchange);
             //If saving to document is a success
-            db.collection(userEmail).document(Bsymbol)
+            db.collection(theUserEmail).document(Bsymbol)
                     .set(document)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.d("SUCCESS_BK", "Document saved" );
                             Toast.makeText(getApplicationContext(), "Stock Saved to Bookmarks", Toast.LENGTH_LONG).show();
+                            btnBookmark = findViewById(R.id.btnBookmark);
+                            btnBookmark.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_bookmark_filled, 0,0,0);
+                            btnBookmark.setTextColor(Color.WHITE);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -140,5 +154,21 @@ public class SearchDetails extends AppCompatActivity {
     //});
 
 
+   /* public void onFav(View view){
+            if (theUserEmail.getShowingFavs()) {
+                theUserEmail = getIntent().getStringExtra("TRANSFER_USER_EMAIL");
+                FirebaseFirestore.getInstance().collection(theUserEmail).document(Bsymbol).delete();
+                Button favBtn = findViewById(R.id.btnBookmark);
+                favBtn.setBackgroundResource(R.drawable.ic_bookmark_empty);
+                Toast.makeText(SearchDetails.this, "Removed from favorites", Toast.LENGTH_SHORT).show();
+                theUserEmail.setShowingFavs(false);
+                //maybe the info below
+                Intent intent = new Intent(SearchDetails.this, Bookmarks.class);
+                startActivity(intent);
+            }
+
+
+
+        }*/
 }
 

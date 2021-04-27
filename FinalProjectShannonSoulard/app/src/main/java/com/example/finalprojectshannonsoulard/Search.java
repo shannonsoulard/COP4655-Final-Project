@@ -73,7 +73,7 @@ public class Search extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_profile:
                         Intent MainIntent = new Intent(Search.this, Profile.class);
-                        //MainIntent.putExtra("TRANSFER_USER_EMAIL", theUserEmail);
+                        MainIntent.putExtra("TRANSFER_USER_EMAIL", theUserEmail);
                         startActivity(MainIntent);
                         break;
                     case R.id.action_home:
