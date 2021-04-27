@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1A1E1E"
+    android:background="#051821"
     tools:context=".MainActivity">
 
     <TextView
@@ -12,12 +12,16 @@
         android:layout_width="361dp"
         android:layout_height="57dp"
         android:layout_marginTop="92dp"
-        android:text="Please sign in to start learning about the stock market!"
+
+        android:text="Become a StockViewer today! Sign in with Google below!"
         android:textColor="#FAFAFA"
+        android:textAlignment="center"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        android:gravity="center_horizontal"
+        android:fontFamily="sans-serif-condensed"/>
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
@@ -37,6 +41,7 @@
         android:layout_width="409dp"
         android:layout_height="0dp"
         android:layout_alignParentBottom="true"
+        app:backgroundTint="#F8BC24"
         app:itemIconTint="@android:color/black"
         app:itemTextColor="#1A1E1E"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -54,7 +59,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textColor="#FAFAFA"/>
+        android:textColor="#F58800"/>
 
     <TextView
         android:id="@+id/textView8"
@@ -65,9 +70,10 @@
         android:layout_marginTop="43dp"
         android:layout_marginEnd="132dp"
         android:layout_marginRight="132dp"
+        android:fontFamily="cursive"
         android:text="Welcome to StockView!"
         android:textColor="#FAFAFA"
-        android:textSize="30sp"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />

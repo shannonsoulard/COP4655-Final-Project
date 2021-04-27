@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Search"
-    android:background="#1A1E1E">
+    android:background="#051821">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -17,7 +17,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" >
+        app:menu="@menu/bottom_nav_menu"
+        app:backgroundTint="#F8BC24">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
@@ -48,6 +49,7 @@
         android:layout_marginEnd="28dp"
         android:layout_marginRight="28dp"
         android:text="Search"
+        app:backgroundTint="#266867"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,7 +63,7 @@
         android:layout_marginEnd="124dp"
         android:layout_marginRight="124dp"
         android:text="Shannon Soulard : Z23464832"
-        android:textColor="#FAFAFA"
+        android:textColor="#F58800"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"

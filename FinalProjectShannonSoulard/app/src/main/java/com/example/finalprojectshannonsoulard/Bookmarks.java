@@ -32,7 +32,7 @@ public class Bookmarks extends AppCompatActivity {
     ArrayList<HashMap<String, String>> BookmarkedList;
 
 
-    String userID = "";
+    String theUserEmail = "";
     public static final String transferUserID = "com.example.finalprojectshannonsoulard.userID";
 
 
@@ -42,8 +42,8 @@ public class Bookmarks extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        userID = getIntent().getStringExtra("USER_ID");
-        Log.e("USER_ID", userID);
+        theUserEmail = getIntent().getStringExtra("TRANSFER_USER_EMAIL");
+        Log.e("TRANSFER_USER_EMAIL", theUserEmail);
 
         setContentView(R.layout.activity_bookmarks);
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -54,20 +54,23 @@ public class Bookmarks extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_profile:
                         Intent MainIntent = new Intent(Bookmarks.this, Profile.class);
+                        //MainIntent.putExtra("TRANSFER_USER_EMAIL", theUserEmail);
                         startActivity(MainIntent);
                         break;
                     case R.id.action_home:
                         Intent homeIntent = new Intent(Bookmarks.this, Home.class);
+                        homeIntent.putExtra("TRANSFER_USER_EMAIL", theUserEmail);
                         startActivity(homeIntent);
                         break;
                     case R.id.action_search:
                         Intent intent = new Intent(Bookmarks.this, Search.class);
-                        intent.putExtra(transferUserID, userID);
+                        intent.putExtra("TRANSFER_USER_EMAIL", theUserEmail);
                         startActivity(intent);
                         break;
                     case R.id.action_bookmarks:
                         //Toast.makeText(FavoriteActivity.this, "favorites", Toast.LENGTH_SHORT).show();
                         Intent favoritesIntent = new Intent(Bookmarks.this, Bookmarks.class);
+                        favoritesIntent.putExtra("TRANSFER_USER_EMAIL", theUserEmail);
                         startActivity(favoritesIntent);
                         break;
                 }
@@ -78,7 +81,7 @@ public class Bookmarks extends AppCompatActivity {
         BookmarkedList = new ArrayList<>();
         listv = (ListView) findViewById(R.id.list2);
 
-        Task<QuerySnapshot> query = FirebaseFirestore.getInstance().collection(userID).get()
+        Task<QuerySnapshot> query = FirebaseFirestore.getInstance().collection(theUserEmail).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {

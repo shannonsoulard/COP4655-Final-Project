@@ -5,29 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Bookmarks"
-    android:background="#1A1E1E">
+    android:background="#051821">
 
     <TextView
-        android:id="@+id/favoriteTitle2"
+        android:id="@+id/nameZnumberBK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="7dp"
         android:text="Shannon Soulard : Z23464832"
+        android:textColor="#F58800"
+        app:layout_constraintBottom_toTopOf="@+id/bookmarkTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/favoriteTitle"
-        android:textColor="#FAFAFA"/>
-
-    <TextView
-        android:id="@+id/favoriteTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="user"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="#FAFAFA"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -39,19 +30,36 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/bottom_nav_menu"
+        app:backgroundTint="#F8BC24"/>
 
     <ListView
         android:id="@+id/list2"
-        android:layout_width="410dp"
-        android:layout_height="469dp"
+        android:layout_width="420dp"
+        android:layout_height="562dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="24dp"
+        android:textColor="#FAFAFA"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/bookmarkTitle"
+        android:layout_width="323dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:layout_marginBottom="1dp"
+        android:textColor="#FAFAFA"
+        android:text="Here are your current Bookmarks saved for later!"
+        app:layout_constraintBottom_toTopOf="@+id/list2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/favoriteTitle2"
-        android:textColor="#FAFAFA"/>
+        app:layout_constraintTop_toBottomOf="@+id/nameZnumberBK" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

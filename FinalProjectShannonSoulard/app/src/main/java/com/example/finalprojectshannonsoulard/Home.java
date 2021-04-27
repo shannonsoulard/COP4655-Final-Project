@@ -29,13 +29,14 @@ import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
 
-    String userID = "";
+    String theUserEmail = "";
 
     private ArrayList<News> news=new ArrayList<>();
     private RecyclerView mRecyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        theUserEmail = getIntent().getStringExtra("TRANSFER_USER_EMAIL");
         mRecyclerView=(RecyclerView)findViewById(R.id.news_list);
         setContentView(R.layout.activity_home);
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -46,6 +47,7 @@ public class Home extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_profile:
                         Intent MainIntent = new Intent(Home.this, Profile.class);
+                        //MainIntent.putExtra("TRANSFER_USER_EMAIL", theUserEmail);
                         startActivity(MainIntent);
                         break;
                     case R.id.action_home:
@@ -54,12 +56,13 @@ public class Home extends AppCompatActivity {
                         break;
                     case R.id.action_search:
                         Intent intent = new Intent(Home.this, Search.class);
+                        intent.putExtra("TRANSFER_USER_EMAIL", theUserEmail);
                         startActivity(intent);
                         break;
                     case R.id.action_bookmarks:
                         //Toast.makeText(FavoriteActivity.this, "favorites", Toast.LENGTH_SHORT).show();
                         Intent favoritesIntent = new Intent(Home.this, Bookmarks.class);
-                        //bookmarkIntent.putExtra("USER_ID", userID);
+                        favoritesIntent.putExtra("TRANSFER_USER_EMAIL", theUserEmail);
                         startActivity(favoritesIntent);
                         break;
                 }

@@ -35,6 +35,7 @@ public class Profile extends AppCompatActivity implements GoogleApiClient.OnConn
     Button logoutBtn;
     TextView userName,userEmail,userId;
     ImageView profileImage;
+
     private GoogleApiClient googleApiClient;
     private GoogleSignInOptions gso;
 
@@ -59,6 +60,7 @@ public class Profile extends AppCompatActivity implements GoogleApiClient.OnConn
                     case R.id.action_home:
                         Toast.makeText(Profile.this, "Home", Toast.LENGTH_SHORT).show();
                         Intent homeIntent = new Intent(Profile.this, Home.class);
+                        homeIntent.putExtra("TRANSFER_USER_EMAIL", theUserEmail);
                         startActivity(homeIntent);
                         break;
                     case R.id.action_search:
@@ -70,7 +72,7 @@ public class Profile extends AppCompatActivity implements GoogleApiClient.OnConn
                     case R.id.action_bookmarks:
                         Toast.makeText(Profile.this, "Bookmarks", Toast.LENGTH_SHORT).show();
                         Intent favoritesIntent = new Intent(Profile.this, Bookmarks.class);
-                        favoritesIntent.putExtra("USER_ID", theUserEmail);
+                        favoritesIntent.putExtra("TRANSFER_USER_EMAIL", theUserEmail);
                         startActivity(favoritesIntent);
                         break;
                 }
@@ -151,4 +153,5 @@ public class Profile extends AppCompatActivity implements GoogleApiClient.OnConn
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+    //public static UserData getUserInstance(){ return ud; }
 }

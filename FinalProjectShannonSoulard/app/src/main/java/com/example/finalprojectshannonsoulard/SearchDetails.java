@@ -57,8 +57,8 @@ public class SearchDetails extends AppCompatActivity {
 
         //Intent intent = getIntent();
         //keyword = intent.getStringExtra(Search.transferID);
-        userEmail = getIntent().getStringExtra("USER_ID");
-        Log.e("USER_ID", userEmail);
+        userEmail = getIntent().getStringExtra("TRANSFER_USER_EMAIL");
+        Log.e("TRANSFER_USER_EMAIL", userEmail);
 
         //linking variables to the created items in the corresponding .xml file
         String dSymbol = getIntent().getStringExtra("STOCK_SYMBOL");

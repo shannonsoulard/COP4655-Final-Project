@@ -5,7 +5,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".SearchDetails"
-    android:background="#1A1E1E">
+    android:background="#051821">
 
     <TextView
         android:id="@+id/detailsTitle"
@@ -16,7 +16,7 @@ tools:context=".SearchDetails"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textColor="#FAFAFA"/>
+        android:textColor="#F58800"/>
 
 
     <TextView
@@ -45,6 +45,7 @@ tools:context=".SearchDetails"
         android:layout_marginRight="36dp"
         android:onClick="onBookmark"
         android:text="Bookmark"
+        app:backgroundTint="#266867"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailsTitle" />
 

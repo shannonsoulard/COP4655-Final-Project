@@ -55,14 +55,14 @@ public class Search extends AppCompatActivity {
 
     TextView nameZnumber;
 
-    String userID = "";
+    String theUserEmail = "";
     //public static final String transfertheID = "com.example.finalprojectshannonsoulard.userID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        userID = getIntent().getStringExtra("TRANSFER_USER_EMAIL");
+        theUserEmail = getIntent().getStringExtra("TRANSFER_USER_EMAIL");
 
         setContentView(R.layout.activity_search);
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -73,19 +73,22 @@ public class Search extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_profile:
                         Intent MainIntent = new Intent(Search.this, Profile.class);
+                        //MainIntent.putExtra("TRANSFER_USER_EMAIL", theUserEmail);
                         startActivity(MainIntent);
                         break;
                     case R.id.action_home:
                         Intent homeIntent = new Intent(Search.this, Home.class);
+                        homeIntent.putExtra("TRANSFER_USER_EMAIL", theUserEmail);
                         startActivity(homeIntent);
                         break;
                     case R.id.action_search:
                         Intent intent = new Intent(Search.this, Search.class);
+                        intent.putExtra("TRANSFER_USER_EMAIL", theUserEmail);
                         startActivity(intent);
                         break;
                     case R.id.action_bookmarks:
                         Intent bookmarkIntent = new Intent(Search.this, Bookmarks.class);
-                        bookmarkIntent.putExtra("USER_ID", userID);
+                        bookmarkIntent.putExtra("TRANSFER_USER_EMAIL", theUserEmail);
                         startActivity(bookmarkIntent);
                         break;
                 }
@@ -147,7 +150,7 @@ public class Search extends AppCompatActivity {
                             intent.putExtra("STOCK_CHANGE", change);
                             intent.putExtra("STOCK_CHANGE_PERCENT", change_percent);
 
-                            intent.putExtra("USER_ID", userID);
+                            intent.putExtra("TRANSFER_USER_EMAIL", theUserEmail);
 
                             startActivity(intent);
 
